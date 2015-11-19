@@ -193,6 +193,8 @@ for ($i=0;$i<count($finalArray);$i++) {
 	" if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {top.ICEcoder.openFile()}}\" style=\"position: relative; left:-22px\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id=\"".str_replace($docRoot,"",str_replace("/","|",$fileFolderName))."\">".xssClean(basename($fileFolderName),"html")."</span> ";
 	if (!isset($ftpSite)) {
 		$thisPermVal = $serverType=="Linux" ? substr(sprintf('%o', fileperms($docRoot.$iceRoot.$fileFolderName)), -3) : '';
+		$thisPermVal .= $type != "folder" ? " | " : '';
+		$thisPermVal .= $type != "folder" ? date ("d.m.y H:i", filemtime($docRoot.$iceRoot.$fileFolderName)) : '';
 	} else {
 		// Work out perms value
 		$thisPermVal = 0;
